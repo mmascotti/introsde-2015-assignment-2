@@ -88,8 +88,8 @@ public class TestClient {
 		test5(xml_request, id_person_t4_xml);
 		test5(json_request, id_person_t4_json);
 		
-		test6(xml_request, measuretypes_xml);
-		test6(json_request, measuretypes_json);
+		test6(xml_request);
+		test6(json_request);
 		
 		test7(xml_request, first_last_t1_xml, measuretypes_xml);
 		test7(json_request, first_last_t1_json, measuretypes_json);
@@ -219,12 +219,16 @@ public class TestClient {
 			req.logResponse(resp, ERROR);
 	}
 	
-	public static void test6(Request req, String [] result){
+	public static void test6(Request req){
 		Response resp = req.request09();
 		MeasuretypeList mtypelist = resp.readEntity(MeasuretypeList.class);
-		mtypelist.getMeasuretypes().toArray(result);
+		
+		if (req.getMediatype().equals(XML))
+			measuretypes_xml = mtypelist.getMeasuretypes().toArray(measuretypes_xml);
+		else if (req.getMediatype().equals(JSON))
+			measuretypes_json = mtypelist.getMeasuretypes().toArray(measuretypes_json);
 
-		if (result.length > 2)
+		if (mtypelist.getMeasuretypes().size() > 2)
 			req.logResponse(resp, OK);
 		else
 			req.logResponse(resp, ERROR);
