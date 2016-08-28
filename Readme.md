@@ -1,7 +1,7 @@
 #Assignment 2
 ##Server url
-The server url on Heroku is:    
- ```https://introsde-assignment2-server.herokuapp.com```     
+The server url on Heroku is:  ```https://introsde-assignment2-server.herokuapp.com```   
+
 I worked alone, so the server and the client code are both in this [repository](https://github.com/mmascotti/introsde-2015-assignment-2).  
 
 ##Structure  
