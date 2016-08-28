@@ -1,0 +1,245 @@
+Server url: https://introsde-assignment2-server.herokuapp.com
+
+Request #1: GET /person Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "person" : [ {
+    "firstname" : "Alice",
+    "lastname" : "A.",
+    "birthdate" : -753541328005,
+    "healthProfile" : {
+      "measureType" : [ {
+        "measure" : "Height",
+        "value" : 170.0
+      }, {
+        "measure" : "Weight",
+        "value" : 60.0
+      } ]
+    },
+    "id" : 10
+  }, {
+    "firstname" : "Bob",
+    "lastname" : "B.",
+    "birthdate" : -420728528001,
+    "healthProfile" : {
+      "measureType" : [ {
+        "measure" : "Height",
+        "value" : 175.0
+      }, {
+        "measure" : "Weight",
+        "value" : 70.0
+      } ]
+    },
+    "id" : 13
+  }, {
+    "firstname" : "Carol",
+    "lastname" : "C.",
+    "birthdate" : -416581327996,
+    "healthProfile" : {
+      "measureType" : [ {
+        "measure" : "Height",
+        "value" : 160.0
+      }, {
+        "measure" : "Weight",
+        "value" : 85.0
+      } ]
+    },
+    "id" : 16
+  } ]
+}
+
+Request #2: GET /person/10 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "firstname" : "Alice",
+  "lastname" : "A.",
+  "birthdate" : -753541328005,
+  "healthProfile" : {
+    "measureType" : [ {
+      "measure" : "Height",
+      "value" : 170.0
+    }, {
+      "measure" : "Weight",
+      "value" : 60.0
+    } ]
+  },
+  "id" : 10
+}
+
+Request #3: PUT /person/10 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "firstname" : "Jospeh",
+  "lastname" : "A.",
+  "birthdate" : -753541328005,
+  "healthProfile" : {
+    "measureType" : [ {
+      "measure" : "Height",
+      "value" : 170.0
+    }, {
+      "measure" : "Weight",
+      "value" : 60.0
+    } ]
+  },
+  "id" : 10
+}
+
+Request #4: POST /person Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 201
+{
+  "firstname" : "Chuck",
+  "lastname" : "Norris",
+  "birthdate" : -788918400000,
+  "healthProfile" : {
+    "measureType" : [ {
+      "measure" : "Height",
+      "value" : 172.0
+    }, {
+      "measure" : "Weight",
+      "value" : 78.9
+    } ]
+  },
+  "id" : 22
+}
+
+Request #5: DELETE /person/22 Accept: application/json Content-type: application/json
+=> Result:  - 
+=> HTTP Status: 200
+
+Request #2: GET /person/22 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 404
+
+Request #9: GET /measureTypes Accept: application/json Content-type: application/json
+=> Result: ERROR
+=> HTTP Status: 200
+{
+  "measureType" : [ "Height", "Weight" ]
+}
+
+Request #6: GET /person/10/Height Accept: application/json Content-type: application/json
+=> Result:  - 
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 11,
+    "value" : 170.0,
+    "created" : 233060271995
+  } ]
+}
+
+=> Result: OK
+
+Request #7: GET /person/10/Height/11 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "mid" : 11,
+  "value" : 170.0,
+  "created" : 233060271995
+}
+
+Request #6: GET /person/10/Height Accept: application/json Content-type: application/json
+=> Result:  - 
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 11,
+    "value" : 170.0,
+    "created" : 233060271995
+  }, {
+    "mid" : 25,
+    "value" : 72.0,
+    "created" : 1323388800000
+  } ]
+}
+
+Request #8: POST /person/10/Height Accept: application/json Content-type: application/json
+=> Result:  - 
+=> HTTP Status: 201
+{
+  "mid" : 26,
+  "value" : 72.0,
+  "created" : 1323388800000
+}
+
+Request #6: GET /person/10/Height Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 11,
+    "value" : 170.0,
+    "created" : 233060271995
+  }, {
+    "mid" : 25,
+    "value" : 72.0,
+    "created" : 1323388800000
+  }, {
+    "mid" : 26,
+    "value" : 72.0,
+    "created" : 1323388800000
+  } ]
+}
+
+Request #10: PUT /person/10/Height/26 Accept: application/json Content-type: application/json
+=> Result:  - 
+=> HTTP Status: 200
+{
+  "measure" : "Height",
+  "value" : 90.0
+}
+
+Request #6: GET /person/10/Height Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 11,
+    "value" : 170.0,
+    "created" : 233060271995
+  }, {
+    "mid" : 25,
+    "value" : 90.0,
+    "created" : 1323388800000
+  }, {
+    "mid" : 26,
+    "value" : 90.0,
+    "created" : 1323388800000
+  } ]
+}
+
+Request #11: GET /person/10/Height?before=1467151200000&after=1323385200000 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 25,
+    "value" : 90.0,
+    "created" : 1323388800000
+  }, {
+    "mid" : 26,
+    "value" : 90.0,
+    "created" : 1323388800000
+  } ]
+}
+
+Request #11: GET /person/10/Height?min=80.0&max=110.0 Accept: application/json Content-type: application/json
+=> Result: OK
+=> HTTP Status: 200
+{
+  "measures" : [ {
+    "mid" : 25,
+    "value" : 90.0,
+    "created" : 1323388800000
+  }, {
+    "mid" : 26,
+    "value" : 90.0,
+    "created" : 1323388800000
+  } ]
+}
+

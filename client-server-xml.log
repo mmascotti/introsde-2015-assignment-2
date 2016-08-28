@@ -1,0 +1,273 @@
+Server url: https://introsde-assignment2-server.herokuapp.com
+
+Request #1: GET /person Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<people>
+  <person id="10">
+    <firstname>Alice</firstname>
+    <lastname>A.</lastname>
+    <birthdate>1946-02-14T10:57:51.995Z</birthdate>
+    <healthProfile>
+      <measureType>
+        <measure>Height</measure>
+        <value>170.0</value>
+      </measureType>
+      <measureType>
+        <measure>Weight</measure>
+        <value>60.0</value>
+      </measureType>
+    </healthProfile>
+  </person>
+  <person id="13">
+    <firstname>Bob</firstname>
+    <lastname>B.</lastname>
+    <birthdate>1956-09-01T10:57:51.999Z</birthdate>
+    <healthProfile>
+      <measureType>
+        <measure>Height</measure>
+        <value>175.0</value>
+      </measureType>
+      <measureType>
+        <measure>Weight</measure>
+        <value>70.0</value>
+      </measureType>
+    </healthProfile>
+  </person>
+  <person id="16">
+    <firstname>Carol</firstname>
+    <lastname>C.</lastname>
+    <birthdate>1956-10-19T10:57:52.004Z</birthdate>
+    <healthProfile>
+      <measureType>
+        <measure>Height</measure>
+        <value>160.0</value>
+      </measureType>
+      <measureType>
+        <measure>Weight</measure>
+        <value>85.0</value>
+      </measureType>
+    </healthProfile>
+  </person>
+</people>
+
+Request #2: GET /person/10 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<person id="10">
+  <firstname>Alice</firstname>
+  <lastname>A.</lastname>
+  <birthdate>1946-02-14T10:57:51.995Z</birthdate>
+  <healthProfile>
+    <measureType>
+      <measure>Height</measure>
+      <value>170.0</value>
+    </measureType>
+    <measureType>
+      <measure>Weight</measure>
+      <value>60.0</value>
+    </measureType>
+  </healthProfile>
+</person>
+
+Request #3: PUT /person/10 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<person id="10">
+  <firstname>Xenia</firstname>
+  <lastname>A.</lastname>
+  <birthdate>1946-02-14T10:57:51.995Z</birthdate>
+  <healthProfile>
+    <measureType>
+      <measure>Weight</measure>
+      <value>60.0</value>
+    </measureType>
+    <measureType>
+      <measure>Height</measure>
+      <value>170.0</value>
+    </measureType>
+  </healthProfile>
+</person>
+
+Request #4: POST /person Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 201
+<?xml version="1.0" encoding="UTF-8"?>
+
+<person id="19">
+  <firstname>Chuck</firstname>
+  <lastname>Norris</lastname>
+  <birthdate>1945-01-01T00:00:00Z</birthdate>
+  <healthProfile>
+    <measureType>
+      <measure>Height</measure>
+      <value>172.0</value>
+    </measureType>
+    <measureType>
+      <measure>Weight</measure>
+      <value>78.9</value>
+    </measureType>
+  </healthProfile>
+</person>
+
+Request #5: DELETE /person/19 Accept: application/xml Content-type: application/xml
+=> Result:  - 
+=> HTTP Status: 200
+
+Request #2: GET /person/19 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 404
+
+Request #9: GET /measureTypes Accept: application/xml Content-type: application/xml
+=> Result: ERROR
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureTypes>
+  <measureType>Height</measureType>
+  <measureType>Weight</measureType>
+</measureTypes>
+
+Request #6: GET /person/10/Height Accept: application/xml Content-type: application/xml
+=> Result:  - 
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>11</mid>
+    <value>170.0</value>
+    <created>1977-05-21T10:57:51.995Z</created>
+  </measures>
+</measureHistory>
+
+=> Result: OK
+
+Request #7: GET /person/10/Height/11 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measure>
+  <mid>11</mid>
+  <value>170.0</value>
+  <created>1977-05-21T10:57:51.995Z</created>
+</measure>
+
+Request #6: GET /person/10/Height Accept: application/xml Content-type: application/xml
+=> Result:  - 
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>11</mid>
+    <value>170.0</value>
+    <created>1977-05-21T10:57:51.995Z</created>
+  </measures>
+</measureHistory>
+
+Request #8: POST /person/10/Height Accept: application/xml Content-type: application/xml
+=> Result:  - 
+=> HTTP Status: 201
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measure>
+  <mid>25</mid>
+  <value>72.0</value>
+  <created>2011-12-09T00:00:00Z</created>
+</measure>
+
+Request #6: GET /person/10/Height Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>11</mid>
+    <value>170.0</value>
+    <created>1977-05-21T10:57:51.995Z</created>
+  </measures>
+  <measures>
+    <mid>25</mid>
+    <value>72.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+</measureHistory>
+
+Request #10: PUT /person/10/Height/25 Accept: application/xml Content-type: application/xml
+=> Result:  - 
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureType>
+  <measure>Height</measure>
+  <value>90.0</value>
+</measureType>
+
+Request #6: GET /person/10/Height Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>11</mid>
+    <value>170.0</value>
+    <created>1977-05-21T10:57:51.995Z</created>
+  </measures>
+  <measures>
+    <mid>25</mid>
+    <value>90.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+  <measures>
+    <mid>26</mid>
+    <value>72.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+</measureHistory>
+
+Request #11: GET /person/10/Height?before=1467151200000&after=1323385200000 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>25</mid>
+    <value>90.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+  <measures>
+    <mid>26</mid>
+    <value>90.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+</measureHistory>
+
+Request #11: GET /person/10/Height?min=80.0&max=110.0 Accept: application/xml Content-type: application/xml
+=> Result: OK
+=> HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?>
+
+<measureHistory>
+  <measures>
+    <mid>25</mid>
+    <value>90.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+  <measures>
+    <mid>26</mid>
+    <value>90.0</value>
+    <created>2011-12-09T00:00:00Z</created>
+  </measures>
+</measureHistory>
+
