@@ -15,9 +15,21 @@ import model.Measure;
 import model.Person;
 import dao.Dao;
 
+/**
+ * The purpose of this resource is creating a test database for execution of the tests
+ * specified in the  
+ * <a href=https://sites.google.com/a/unitn.it/introsde_2015-16/lab-sessions/assignments/assignment-2>
+ * assignment description
+ * </a>.
+ *
+ */
 @Path("/resetdatabase")
 public class TestEnvironmentResource {
 	
+	/**
+	 * Deletes all {@link Person} from the database and inserts 3 sample persons.
+	 * @return the list of sample persons
+	 */
 	@GET
     @Produces({MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML })
 	public Response resetDatabse(){
@@ -96,6 +108,14 @@ public class TestEnvironmentResource {
 		return Response.ok(list).build();
 	}
 	
+	/**
+	 * This is a helper method to create rapidly a new {@link Calendar} which day, month and year corresponds to the values 
+	 * passed as parameters.
+	 * @param day
+	 * @param month
+	 * @param year
+	 * @return a {@link Calendar} which date is set to the parameters above
+	 */
 	private Calendar newCal(int day, int month, int year){
 		Calendar c = Calendar.getInstance();
 		c.set(year, month, day);
